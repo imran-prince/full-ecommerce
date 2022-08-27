@@ -36,3 +36,4 @@ Route::get('category/delete/{id}',[CategoryController::class,'destory'])->name('
 // Admin Product
 
 Route::get('product_create',[CategoryController::class,'product_create'])->name('product.create');
+Route::post('product_store',[CategoryController::class,'product_store'])->name('product.store');
