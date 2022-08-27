@@ -49,4 +49,9 @@ class CategoryController extends Controller
    
      return redirect()->back()->with('message', 'product added successfully');
   }
+  public function product_show()
+  {
+      $product=Product::all();
+      return view('Admin.product_show',compact('product'));
+  }
 }
