@@ -44,3 +44,8 @@ Route::get('/product_edit/{id}',[CategoryController::class,'product_edit']);
 Route::post('/product/update/{id}',[CategoryController::class,'update'])->name('product.update');
 Route::get('/product/details/{id}',[CategoryController::class,'details'])->name('product.details');
 Route::post('/product/cart/{id}',[CategoryController::class,'cart'])->name('add.cart');
+Route::get('cart/show',[CategoryController::class,'cart_show'])->name('cart.show');
+Route::get('cart/remove/{id}',[CategoryController::class,'remove'])->name('remove.cart');
+Route::get('cash/payment',[CategoryController::class,'cash'])->name('cash.payment');
+Route::get('stripe/payment/{totalprice}',[CategoryController::class,'stripe'])->name('stripe.payment');
+Route::post('stripe/{totalprice}',[CategoryController::class, 'stripePost'])->name('stripe.post');
