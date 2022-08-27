@@ -54,4 +54,10 @@ class CategoryController extends Controller
       $product=Product::all();
       return view('Admin.product_show',compact('product'));
   }
+  public function product_delete($id)
+  {
+     $data=Product::find($id);
+     $data->delete();
+     return redirect()->back()->with('message', 'product deleted successfully');
+  }
 }
