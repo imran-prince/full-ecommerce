@@ -56,7 +56,7 @@
                                     <td><img src="product/{{ $data->image }}" alt=""></td>
                                     <td>{{ $data->category }}</td>
                                     <td>
-                                        <a href="" class="btn btn-info btn-sm">Edit</a>
+                                        <a href="{{url('product_edit',$data->id)}}" class="btn btn-info btn-sm">Edit</a>
                                         <a href="{{ route('product.delete', $data->id) }}"
                                            onclick="return confirm('Are you sure this delete')" class="btn btn-danger btn-sm">Delete</a>
                                     </td>

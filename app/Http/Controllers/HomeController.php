@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Product;
+ 
 use Illuminate\Support\Facades\Auth;
+ 
 class HomeController extends Controller
 {
    public function redirect()
@@ -20,6 +22,7 @@ class HomeController extends Controller
    }
    public function index()
    {
-      return view('User.userpage');
+     $product=Product::paginate(6);
+      return view('User.userpage',compact('product'));
    }
 }
