@@ -7,9 +7,9 @@
                    <a href="#"><img width="210" src="{{asset('frontend')}}/images/logo.png" alt="#" /></a>
                  </div>
                  <div class="information_f">
-                   <p><strong>ADDRESS:</strong> 28 White tower, Street Name New York City, USA</p>
-                   <p><strong>TELEPHONE:</strong> +91 987 654 3210</p>
-                   <p><strong>EMAIL:</strong> yourmain@gmail.com</p>
+                   <p><strong>ADDRESS:</strong> Mirpur-2 Dhaka-1216</p>
+                   <p><strong>TELEPHONE:</strong>014056589</p>
+                   <p><strong>EMAIL:</strong> princeimran@gmail.com</p>
                  </div>
               </div>
           </div>

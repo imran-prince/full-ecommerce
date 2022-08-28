@@ -276,8 +276,13 @@ class CategoryController extends Controller
   {
       $searchtxt=$req->search;
    
-      $product=Product::where('title','LIKE',"%$searchtxt%")->orWhere('category','LIKE',"%$searchtxt%")->paginate(5);
+      $product=Product::where('title','LIKE',"%$searchtxt%")->orWhere('category','LIKE',"%$searchtxt%")->paginate(6);
       
       return view('User.userpage',compact('product'));
+  }
+  public function all_product()
+  {
+     $product=Product::paginate(20);
+     return view('User.all_product',compact('product'));
   }
 }

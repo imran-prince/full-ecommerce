@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class HomeController extends Controller
@@ -27,7 +28,7 @@ class HomeController extends Controller
       $total_processing = Order::where('delivery_status', '=', 'processing')->get()->count();
       return view('Admin.home', compact('totalproduct', 'totalorder', 'totaluser', 'totalrevinew', 'total_delivered', 'total_processing'));
     } else {
-      $product = Product::paginate(6);
+      $product = Product::paginate(5);
      
       return view('User.userpage', compact('product'));
     }
@@ -35,7 +36,7 @@ class HomeController extends Controller
   public function index()
   {
 
-    $product = Product::paginate(6);
+    $product = Product::paginate(5);
      
     return view('User.userpage', compact('product' ));
   }

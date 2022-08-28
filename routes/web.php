@@ -27,6 +27,11 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+// prefix
+ 
+
+
+
 // Admin category
 Route::get('/redirect',[HomeController::class,'redirect'])->middleware('auth','verified');
 Route::get('/admin_category',[CategoryController::class,'admin_category']);
@@ -56,3 +61,4 @@ Route::post('admin/search',[CategoryController::class, 'search'])->name('admin.s
 Route::get('order/show',[CategoryController::class, 'order_show'])->name('order.show');
 Route::get('order/cancel/{id}',[CategoryController::class, 'order_cencel'])->name('order.cancel');
 Route::get('/user_search',[CategoryController::class, 'user_search']) ;
+Route::get('all/product',[CategoryController::class, 'all_product'])->name('all.product') ;

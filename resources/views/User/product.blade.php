@@ -59,7 +59,9 @@
 
 
         </div>
-        {{ $product->links() }}
+        <div class="  w-75 m-auto">
+            {{ $product->links() }}
+        </div>
         {{-- <div class="btn-box">
             <a href="">
                 View All products
