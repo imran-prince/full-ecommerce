@@ -9,7 +9,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
- 
+use RealRashid\SweetAlert\Facades\Alert;
 use Session;
 use Stripe;
 use PDF;
@@ -126,7 +126,7 @@ class CategoryController extends Controller
       } else {
         $cart->price = $product->price * $req->quantity;
       }
-
+ Alert::success('prduct added successfullay');
       $cart->save();
 
 
@@ -249,5 +249,35 @@ class CategoryController extends Controller
      $searchtxt=$req->search;
       $order=Order::where('name','LIKE',"%$searchtxt%")->orWhere('product_title','LIKE',"%$searchtxt%")->orWhere('product_title','LIKE',"%$searchtxt%")->get();
       return view('Admin.order',compact('order'));
+  }
+  public function order_show()
+  {
+      if(Auth::id())
+      {
+        $user=Auth::user()->id;
+         $order=Order::where('user_id','=',$user)->get();
+         return view('User.order',compact('order'));
+      }
+      else
+      {
+        return redirect('login');
+      }
+  }
+  public function order_cencel($id)
+  {
+      $order=Order::find($id);
+      // $order->delivery_status='You cancel the order';
+
+      $order->save();
+      $order->delete();
+      return redirect()->back();
+  }
+  public function user_search(Request $req)
+  {
+      $searchtxt=$req->search;
+   
+      $product=Product::where('title','LIKE',"%$searchtxt%")->orWhere('category','LIKE',"%$searchtxt%")->paginate(5);
+      
+      return view('User.userpage',compact('product'));
   }
 }

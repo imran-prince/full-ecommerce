@@ -53,3 +53,6 @@ Route::get('admin/order',[CategoryController::class, 'admin_order'])->name('admi
 Route::get('admin/delivery/{id}',[CategoryController::class, 'delivery'])->name('admin.delivery');
 Route::get('admin/pdf/{id}',[CategoryController::class, 'pdf'])->name('print.pdf');
 Route::post('admin/search',[CategoryController::class, 'search'])->name('admin.search');
+Route::get('order/show',[CategoryController::class, 'order_show'])->name('order.show');
+Route::get('order/cancel/{id}',[CategoryController::class, 'order_cencel'])->name('order.cancel');
+Route::get('/user_search',[CategoryController::class, 'user_search']) ;

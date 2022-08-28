@@ -34,6 +34,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('cart.show')}}">cart</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('order.show')}}">Order</a>
+                    </li>
 
 
                     <form class="form-inline">

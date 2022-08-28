@@ -2,6 +2,7 @@
 <html>
    <head>
       <!-- Basic -->
+      <base href="/public">
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <!-- Mobile Metas -->
@@ -22,6 +23,7 @@
       <link href="{{asset('frontend')}}/css/responsive.css" rel="stylesheet" />
    </head>
    <body>
+      @include('sweetalert::alert')
       <div class="hero_area">
          <!-- header section strats -->
             @include('User.header')
@@ -59,6 +61,16 @@
          </p>
       </div>
       <!-- jQery -->
+      <script>
+         document.addEventListener("DOMContentLoaded", function(event) { 
+             var scrollpos = localStorage.getItem('scrollpos');
+             if (scrollpos) window.scrollTo(0, scrollpos);
+         });
+ 
+         window.onbeforeunload = function(e) {
+             localStorage.setItem('scrollpos', window.scrollY);
+         };
+     </script>
       <script src="js/jquery-3.4.1.min.js"></script>
       <!-- popper js -->
       <script src="js/popper.min.js"></script>

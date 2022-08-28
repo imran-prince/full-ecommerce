@@ -2,6 +2,7 @@
 <html>
 
 <head>
+
     <!-- Basic -->
     <base href="/public">
     <meta charset="utf-8" />
@@ -22,10 +23,12 @@
     <link href="{{ asset('frontend') }}/css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="{{ asset('frontend') }}/css/responsive.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
     <div class="hero_area">
+        @include('sweetalert::alert')
         <!-- header section strats -->
         @include('User.header')
         <!-- end header section -->
@@ -64,8 +67,8 @@
                             </td>
                             <td>
                                 <a href="{{ route('remove.cart', $data->id) }}"
-                                    onclick="return confirm('Are you sure to delete')"
-                                    class="btn btn-sm btn-danger">Remove product</a>
+                                   onclick="confirmation(event)"
+                                    class="btn btn-sm btn-danger  ">Remove product</a>
                             </td>
 
                         </tr>
@@ -81,7 +84,8 @@
                 <div>
                     <h3>Proced to Order</h3>
                     <a href="{{ route('cash.payment') }}" class="btn btn-sm btn-info">Cash on Delivary</a>
-                    <a href="{{ route('stripe.payment',$totalprice) }}" class="btn btn-sm btn-primary">Pay Using card</a>
+                    <a href="{{ route('stripe.payment', $totalprice) }}" class="btn btn-sm btn-primary">Pay Using
+                        card</a>
                 </div>
             @endif
 
@@ -102,6 +106,23 @@
         </p>
     </div>
     <!-- jQery -->
+    <script  >
+         function confirmation (event) {
+            event.preventDefault();
+            const urlToRedirect =  event.currentTarget.getAttribute('href');
+            swal({
+                title: 'Are you sure?',
+                text: 'This record and it`s details will be permanantly deleted!',
+                icon: 'warning',
+                buttons:true,
+                dangerMode:true;
+            }).then(willCancel) {
+                if (willCancel) {
+                    window.location.href = urlToRedirect;
+                }
+            };
+        };
+    </script>
     <script src="js/jquery-3.4.1.min.js"></script>
     <!-- popper js -->
     <script src="js/popper.min.js"></script>
