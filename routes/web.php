@@ -28,7 +28,7 @@ Route::middleware([
     })->name('dashboard');
 });
 // Admin category
-Route::get('/redirect',[HomeController::class,'redirect']);
+Route::get('/redirect',[HomeController::class,'redirect'])->middleware('auth','verified');
 Route::get('/admin_category',[CategoryController::class,'admin_category']);
 Route::post('/category_store',[CategoryController::class,'category_store']);
 Route::get('category/delete/{id}',[CategoryController::class,'destory'])->name('category.delete');
@@ -49,3 +49,7 @@ Route::get('cart/remove/{id}',[CategoryController::class,'remove'])->name('remov
 Route::get('cash/payment',[CategoryController::class,'cash'])->name('cash.payment');
 Route::get('stripe/payment/{totalprice}',[CategoryController::class,'stripe'])->name('stripe.payment');
 Route::post('stripe/{totalprice}',[CategoryController::class, 'stripePost'])->name('stripe.post');
+Route::get('admin/order',[CategoryController::class, 'admin_order'])->name('admin.order');
+Route::get('admin/delivery/{id}',[CategoryController::class, 'delivery'])->name('admin.delivery');
+Route::get('admin/pdf/{id}',[CategoryController::class, 'pdf'])->name('print.pdf');
+Route::post('admin/search',[CategoryController::class, 'search'])->name('admin.search');

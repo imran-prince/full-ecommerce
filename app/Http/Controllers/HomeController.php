@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
- 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
  
 class HomeController extends Controller
@@ -14,15 +15,28 @@ class HomeController extends Controller
 
       if($role=='1')
       {
-        return view('Admin.home');
+        $totalproduct=Product::all()->count();
+        $totalorder=Order::all()->count();
+        $totaluser=User::all()->count();
+        $totalrevinew=0;
+        $order=Order::all();
+        foreach($order as $order)
+        {
+          $totalrevinew=$totalrevinew+$order->price;
+        }
+        $total_delivered=Order::where('delivery_status','=','delivered')->get()->count();
+        $total_processing=Order::where('delivery_status','=','processing')->get()->count();
+        return view('Admin.home',compact('totalproduct','totalorder','totaluser','totalrevinew','total_delivered','total_processing'));
       }
       else{
-        return view('User.userpage');
+        $product=Product::paginate(6);
+        return view('User.userpage',compact('product'));
       }
    }
    public function index()
    {
-     $product=Product::paginate(6);
+     
+    $product=Product::paginate(6);
       return view('User.userpage',compact('product'));
    }
 }

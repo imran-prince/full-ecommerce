@@ -9,8 +9,10 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
+ 
 use Session;
 use Stripe;
+use PDF;
 
 class CategoryController extends Controller
 {
@@ -40,6 +42,7 @@ class CategoryController extends Controller
   }
   public function product_store(Request $req)
   {
+   
     $product = new Product;
     $product->title = $req->title;
     $product->description = $req->description;
@@ -104,6 +107,7 @@ class CategoryController extends Controller
   {
 
     if (Auth::id()) {
+ 
       $user = Auth::user();
       $product = Product::find($id);
       $cart = new Cart;
@@ -115,6 +119,7 @@ class CategoryController extends Controller
       $cart->image = $product->image;
       $cart->product_title = $product->title;
       $cart->quantity = $req->quantity;
+ 
       $cart->product_id = $product->id;
       if ($product->discount_price) {
         $cart->price = $product->discount_price * $req->quantity;
@@ -150,13 +155,17 @@ class CategoryController extends Controller
   public function cash()
   {
     $user = Auth::user();
+    
     $user_id = $user->id;
+     
     $data = Cart::where('user_id', '=', $user_id)->get();
+ 
+ 
     foreach ($data as $data) {
       $order = new Order;
       $order->name = $data->name;
       $order->email = $data->email;
-      $order->phone = $data->name;
+      $order->phone = $data->phone;
       $order->address = $data->address;
       $order->user_id = $data->user_id;
       $order->product_title = $data->product_title;
@@ -164,6 +173,7 @@ class CategoryController extends Controller
       $order->quantity = $data->quantity;
       $order->image = $data->image;
       $order->product_id = $data->product_id;
+   
       $order->payment_status = "cash on delivery";
       $order->delivery_status = "processing";
       $order->save();
@@ -171,6 +181,7 @@ class CategoryController extends Controller
       $cart = Cart::find($cart_id);
       $cart->delete();
     }
+    
     return redirect()->back()->with('message', 'We have received your order. We will connect with you soon...');
   }
   public function stripe($totalprice)
@@ -213,5 +224,30 @@ class CategoryController extends Controller
     Session::flash('success', 'Payment successful!');
 
     return back();
+  }
+  public function admin_order( )
+  {
+    $order=Order::all(); 
+    return view('Admin.order',compact('order'));
+  }
+  public function delivery($id)
+  {
+     $data=Order::find($id);
+     $data->delivery_status='delivered';
+     $data->payment_status='paid';
+     $data->save();
+     return redirect()->back();
+  }
+  public function pdf($id)
+  {
+     $data=Order::find($id);
+     $pdf =PDF::loadView('Admin.pdf',compact('data'));
+     return $pdf->download('order_details.pdf');
+  }
+  public function search(Request $req)
+  {
+     $searchtxt=$req->search;
+      $order=Order::where('name','LIKE',"%$searchtxt%")->orWhere('product_title','LIKE',"%$searchtxt%")->orWhere('product_title','LIKE',"%$searchtxt%")->get();
+      return view('Admin.order',compact('order'));
   }
 }
