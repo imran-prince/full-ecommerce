@@ -16,6 +16,9 @@ use PDF;
 
 class CategoryController extends Controller
 {
+
+ 
+  
   public function admin_category()
   {
     $category = Category::get();
@@ -284,5 +287,13 @@ class CategoryController extends Controller
   {
      $product=Product::paginate(20);
      return view('User.all_product',compact('product'));
+  }
+  public function contact( )
+  {
+    return view('User.contact');
+  }
+  public function blog( )
+  {
+    return view('User.blog');
   }
 }

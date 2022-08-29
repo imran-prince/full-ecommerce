@@ -28,16 +28,32 @@
          <!-- header section strats -->
             @include('User.header')
          <!-- end header section -->
-         
+         <!-- slider section -->
+         <section class="inner_page_head">
+            <div class="container_fuild">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="full">
+                        <h3>Blog List</h3>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- end slider section -->
+ 
+      <!-- why section -->
+      @include('User.why')
+      <!-- end why section -->
       
-      <!-- product section -->
-      @include('User.product')
-      <!-- end product section -->
-
+      <!-- arrival section -->
       
+      <!-- end client section -->
+      <!-- footer start -->
+      @include('User.footer')
       <!-- footer end -->
       <div class="cpy_">
-         <p class="mx-auto">© 2021 All Rights Reserved By <a href=" ">By Prince</a><br>
+        <p class="mx-auto">© 2022 All Rights Reserved By <a href=" ">By Prince</a><br>
          
          </p>
       </div>

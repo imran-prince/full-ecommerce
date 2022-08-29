@@ -43,6 +43,9 @@ Route::get('category/delete/{id}',[CategoryController::class,'destory'])->name('
 Route::get('product_create',[CategoryController::class,'product_create'])->name('product.create');
 Route::post('product_store',[CategoryController::class,'product_store'])->name('product.store');
 Route::get('product_show',[CategoryController::class,'product_show'])->name('product.show');
+
+
+
  
 Route::get('product_delete/{id}',[CategoryController::class,'product_delete'])->name('product.delete');
 Route::get('/product_edit/{id}',[CategoryController::class,'product_edit']);
@@ -62,3 +65,5 @@ Route::get('order/show',[CategoryController::class, 'order_show'])->name('order.
 Route::get('order/cancel/{id}',[CategoryController::class, 'order_cencel'])->name('order.cancel');
 Route::get('/user_search',[CategoryController::class, 'user_search']) ;
 Route::get('all/product',[CategoryController::class, 'all_product'])->name('all.product') ;
+Route::get('contact',[CategoryController::class, 'contact'])->name('contact') ;
+Route::get('blog',[CategoryController::class, 'blog'])->name('blog') ;

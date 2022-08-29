@@ -17,11 +17,11 @@
                         <a class="nav-link" href="{{route('all.product')}}">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="blog_list.html">Blog</a>
+                        <a class="nav-link" href="{{route('blog')}}">Blog</a>
                     </li>
                    
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="{{route('contact')}}">Contact</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('cart.show')}}">cart</a>
